@@ -11,7 +11,7 @@ namespace SBMS.DatabaseContexts.DatabaseContext
 {
     public class SBMSDbContext : DbContext
     {
-        public SBMSDbContext(DbContextOptions options) : base(options)
+        public SBMSDbContext(DbContextOptions<SBMSDbContext> options) : base(options)
         {
         }
 
@@ -20,12 +20,12 @@ namespace SBMS.DatabaseContexts.DatabaseContext
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-JS570QN\\SQLEXPRESS;Database=SBMS_Db;Trusted_Connection=True;TrustServerCertificate=True");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer("Server=DESKTOP-JS570QN\\SQLEXPRESS;Database=SBMS_Db;Trusted_Connection=True;TrustServerCertificate=True");
+        //    }
+        //}
     }
 }
