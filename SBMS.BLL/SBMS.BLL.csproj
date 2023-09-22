@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SBMS.DAL\SBMS.DAL.csproj" />
+    <ProjectReference Include="..\SBMS.Models\SBMS.Models.csproj" />
+  </ItemGroup>
+
 </Project>
