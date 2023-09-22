@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SBMS.DAL.Services;
 using SBMS.DatabaseContexts.DatabaseContext;
 
 namespace SBMS.DAL.Repositories
 {
     //This is generic class
-    public abstract class Repository<T> where T : class
+    public abstract class Repository<T>:IRepository<T> where T:class
     {
         private readonly SBMSDbContext _context;
         public Repository(SBMSDbContext sBMSDbContext)
@@ -41,7 +42,7 @@ namespace SBMS.DAL.Repositories
             return Table.Find(id);
         }
 
-        public virtual ICollection<T> GetAll()
+        public virtual IList<T> GetAll()
         {
             return Table.ToList();
         }

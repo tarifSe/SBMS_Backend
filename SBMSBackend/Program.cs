@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using SBMS.BLL.Managers;
+using SBMS.BLL.Services;
+using SBMS.DAL.Repositories;
+using SBMS.DAL.Services;
 using SBMS.DatabaseContexts.DatabaseContext;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<SBMSDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("SBMSConnection")));
+
+#region start service inject
+builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<ICategoryManager, CategoryManager>();
+#endregion end
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

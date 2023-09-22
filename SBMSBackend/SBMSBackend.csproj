@@ -14,10 +14,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SBMS.BLL\SBMS.BLL.csproj" />
     <ProjectReference Include="..\SBMS.DatabaseContexts\SBMS.DatabaseContexts.csproj" />
     <ProjectReference Include="..\SBMS.Models\SBMS.Models.csproj" />
   </ItemGroup>
