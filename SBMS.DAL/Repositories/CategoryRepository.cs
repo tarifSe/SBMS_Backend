@@ -1,4 +1,5 @@
-﻿using SBMS.DAL.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using SBMS.DAL.Services;
 using SBMS.DatabaseContexts.DatabaseContext;
 using SBMS.Models.EntityModels;
 using System;
@@ -15,5 +16,10 @@ namespace SBMS.DAL.Repositories
         {
 
         }
+
+        //public override Task<List<Category>> GetAll()
+        //{
+        //    return base.Table.Include(p=>p.Products).ToListAsync();
+        //}
     }
 }
