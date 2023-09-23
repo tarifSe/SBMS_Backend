@@ -19,32 +19,33 @@ namespace SBMS.DAL.Repositories
             } 
         }
 
-        public virtual bool Add(T entity)
+        public virtual async Task<bool> Add(T entity)
         {
-            Table.Add(entity);
-            return _context.SaveChanges() > 0;
+            await Table.AddAsync(entity);
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public virtual bool Update(T entity)
+        public virtual async Task<bool> Update(T entity)
         {
             Table.Update(entity);
-            return _context.SaveChanges() > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public virtual bool Delete(T entity)
+        public virtual async Task<bool> Delete(T entity)
         {
             Table.Remove(entity);
-            return _context.SaveChanges() > 0;
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public virtual T? GetById(int id)
+        public virtual async Task<T?> GetById(int id)
         {
-            return Table.Find(id);
+            return await Table.FindAsync(id);
         }
 
-        public virtual IList<T> GetAll()
+        public virtual async Task<List<T>> GetAll()
         {
-            return Table.ToList();
+            return await Table.ToListAsync();
         }
+        
     }
 }

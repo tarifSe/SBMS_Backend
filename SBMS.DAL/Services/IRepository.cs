@@ -11,10 +11,10 @@ namespace SBMS.DAL.Services
     //This is generic Interface
     public interface IRepository<T> where T : class
     {
-        bool Add(T entity);
-        bool Update(T entity);
-        bool Delete(T entity);
-        T? GetById(int id);
-        IList<T> GetAll();
+        Task<bool> Add(T entity);
+        Task<bool> Update(T entity);
+        Task<bool> Delete(T entity);
+        Task<T?> GetById(int id);
+        Task<List<T>> GetAll();
     }
 }
