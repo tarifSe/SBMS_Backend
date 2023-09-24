@@ -17,9 +17,9 @@ namespace SBMS.DAL.Repositories
 
         }
 
-        //public override Task<List<Category>> GetAll()
-        //{
-        //    return base.Table.Include(p=>p.Products).ToListAsync();
-        //}
+        public override Task<List<Category>> GetAll()
+        {
+            return base.Table.Include(p => p.Products).ToListAsync();
+        }
     }
 }

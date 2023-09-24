@@ -26,11 +26,11 @@ namespace SBMSBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-          if (_productManager.GetAll() == null)
-          {
-              return NotFound();
-          }
-          var products = await _productManager.GetAll();
+            var products = await _productManager.GetAll();
+            if (products == null)
+            {
+                return NotFound();
+            }
             return Ok(products);
         }
 

@@ -26,12 +26,12 @@ namespace SBMSBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
-          if (_customerManager.GetAll() == null)
-          {
-              return NotFound();
-          }
-            //return await _customerManager.GetAll().ConfigureAwait(false);
-            return await _customerManager.GetAll();
+            var customers = await _customerManager.GetAll();
+            if (customers == null)
+            {
+                return NotFound();
+            }
+            return customers;
         }
 
         // GET: api/Customers/5
