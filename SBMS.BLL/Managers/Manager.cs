@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SBMS.BLL.Managers
 {
     //This is base/generic Manager
-    public class Manager<T> : IManager<T> where T : class
+    public abstract class Manager<T> : IManager<T> where T : class
     {
         private readonly IRepository<T> _repository;
         public Manager(IRepository<T> repository)
@@ -17,28 +17,28 @@ namespace SBMS.BLL.Managers
             _repository= repository;
         }
 
-        public virtual Task<bool> Add(T entity)
+        public virtual async Task<bool> Add(T entity)
         {
-            return _repository.Add(entity);
+            return await _repository.Add(entity);
         }
-        public virtual Task<bool> Update(T entity)
+        public virtual async Task<bool> Update(T entity)
         {
-            return _repository.Update(entity);
-        }
-
-        public virtual Task<bool> Delete(T entity)
-        {
-            return _repository.Delete(entity);
+            return await _repository.Update(entity);
         }
 
-        public virtual Task<T?> GetById(int id)
+        public virtual async Task<bool> Delete(T entity)
         {
-            return _repository.GetById(id);
+            return await _repository.Delete(entity);
         }
 
-        public virtual Task<List<T>> GetAll()
+        public virtual async Task<T?> GetById(int id)
         {
-            return _repository.GetAll();
+            return await _repository.GetById(id);
+        }
+
+        public virtual async Task<List<T>> GetAll()
+        {
+            return await _repository.GetAll();
         }
 
     }

@@ -15,9 +15,12 @@ builder.Services.AddDbContext<SBMSDbContext>(option => option.UseSqlServer(build
 
 #region start service inject
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
-builder.Services.AddTransient<ICategoryManager, CategoryManager>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+
+builder.Services.AddTransient<ICategoryManager, CategoryManager>();
 builder.Services.AddTransient<IProductManager, ProductManager>();
+builder.Services.AddTransient<ICustomerManager, CustomerManager>();
 #endregion end
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
