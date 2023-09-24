@@ -11,13 +11,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<SBMSDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("SBMSConnection")),ServiceLifetime.Transient);
+builder.Services.AddDbContext<SBMSDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("SBMSConnection")), ServiceLifetime.Transient);
+//builder.Services.AddDbContext<SBMSDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("SBMSConnection")));
 
 #region start service inject
+builder.Services.AddTransient<ISupplierRepository, SupplierRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
+builder.Services.AddTransient<ISupplierManager, SupplierManager>();
 builder.Services.AddTransient<ICategoryManager, CategoryManager>();
 builder.Services.AddTransient<IProductManager, ProductManager>();
 builder.Services.AddTransient<ICustomerManager, CustomerManager>();
