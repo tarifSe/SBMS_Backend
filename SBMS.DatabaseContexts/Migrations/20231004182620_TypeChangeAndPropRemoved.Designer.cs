@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBMS.DatabaseContexts.DatabaseContext;
 
@@ -10,9 +11,11 @@ using SBMS.DatabaseContexts.DatabaseContext;
 namespace SBMS.DatabaseContexts.Migrations
 {
     [DbContext(typeof(SBMSDbContext))]
-    partial class SBMSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231004182620_TypeChangeAndPropRemoved")]
+    partial class TypeChangeAndPropRemoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
