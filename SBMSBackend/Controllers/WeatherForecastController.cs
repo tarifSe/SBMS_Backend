@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using SBMS.Models.EntityModels;
 
 namespace SBMSBackend.Controllers
 {
@@ -13,7 +12,6 @@ namespace SBMSBackend.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        Class1 class1 = new Class1();
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
