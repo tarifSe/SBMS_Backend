@@ -74,7 +74,8 @@ namespace SBMSBackend.Controllers
                 //}
             }
 
-            return NoContent();
+            //return NoContent();
+            return Ok(await _categoryManager.GetAll());
         }
 
         // POST: api/Categories
@@ -88,7 +89,8 @@ namespace SBMSBackend.Controllers
             //}
             await _categoryManager.Add(category);
 
-            return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+            //return CreatedAtAction("GetCategory", new { id = category.Id }, category);
+            return Ok(await _categoryManager.GetAll());
         }
 
         // DELETE: api/Categories/5
@@ -107,7 +109,7 @@ namespace SBMSBackend.Controllers
 
             await _categoryManager.Delete(category);
 
-            return NoContent();
+            return Ok(await _categoryManager.GetAll());
         }
 
         //private bool CategoryExists(Category id)
