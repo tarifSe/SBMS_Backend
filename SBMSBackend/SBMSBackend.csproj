@@ -25,4 +25,8 @@
     <ProjectReference Include="..\SBMS.Models\SBMS.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\" />
+  </ItemGroup>
+
 </Project>

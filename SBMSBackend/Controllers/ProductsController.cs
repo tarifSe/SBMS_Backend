@@ -53,11 +53,12 @@ namespace SBMSBackend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
+            if (product.Category != null) product.Category = null;
             if (id != product.Id)
             {
                 return BadRequest();
             }
-
+             
             try
             {
                 await _productManager.Update(product);
@@ -74,7 +75,8 @@ namespace SBMSBackend.Controllers
                 //}
             }
 
-            return NoContent();
+            //return NoContent();
+            return Ok(await _productManager.GetAll());
         }
 
         // POST: api/Products
@@ -82,8 +84,11 @@ namespace SBMSBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
+            if (product.Category != null) product.Category = null;
+
             await _productManager.Add(product);
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            //return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return Ok(await _productManager.GetAll());
         }
 
         // DELETE: api/Products/5
@@ -99,7 +104,7 @@ namespace SBMSBackend.Controllers
 
             await _productManager.Delete(product);
 
-            return NoContent();
+            return Ok(await _productManager.GetAll());
         }
 
         //private bool ProductExists(int id)
