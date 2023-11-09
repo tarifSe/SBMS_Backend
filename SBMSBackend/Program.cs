@@ -33,6 +33,7 @@ builder.Services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
