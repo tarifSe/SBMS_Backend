@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SBMS.BLL.Managers;
 using SBMS.BLL.Services;
 using SBMS.DatabaseContexts.DatabaseContext;
 using SBMS.Models.EntityModels;
@@ -74,7 +75,7 @@ namespace SBMSBackend.Controllers
                 //}
             }
 
-            return NoContent();
+            return Ok(await _customerManager.GetAll());
         }
 
         // POST: api/Customers
@@ -84,7 +85,7 @@ namespace SBMSBackend.Controllers
         {
             await _customerManager.Add(customer);
 
-            return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
+            return Ok(await _customerManager.GetAll());
         }
 
         // DELETE: api/Customers/5
@@ -99,7 +100,7 @@ namespace SBMSBackend.Controllers
 
             await _customerManager.Delete(customer);
 
-            return Ok("Deleted");
+            return Ok(await _customerManager.GetAll());
         }
 
         //private bool CustomerExists(int id)
