@@ -33,15 +33,20 @@ builder.Services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(options => options.WithOrigins("http://localhost:4200")
+.AllowAnyMethod()
+.AllowAnyHeader());
 
 app.UseAuthorization();
 

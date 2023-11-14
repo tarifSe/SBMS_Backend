@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using SBMS.DatabaseContexts.DatabaseContext;
 using SBMS.Models.EntityModels;
 using SBMS.BLL.Services;
+using SBMSBackend.Models.DTOs;
+using AutoMapper;
 
 namespace SBMSBackend.Controllers
 {
@@ -16,10 +18,12 @@ namespace SBMSBackend.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductManager _productManager;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductManager productManager)
+        public ProductsController(IProductManager productManager, IMapper mapper)
         {
             _productManager = productManager;
+            _mapper = mapper;
         }
 
         // GET: api/Products
@@ -51,13 +55,14 @@ namespace SBMSBackend.Controllers
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(int id, Product product)
+        public async Task<IActionResult> PutProduct(int id, ProductDTO productDTO)
         {
+            var product = _mapper.Map<Product>(productDTO);
             if (id != product.Id)
             {
                 return BadRequest();
             }
-
+             
             try
             {
                 await _productManager.Update(product);
@@ -74,16 +79,20 @@ namespace SBMSBackend.Controllers
                 //}
             }
 
-            return NoContent();
+            //return NoContent();
+            return Ok(await _productManager.GetAll());
         }
 
         // POST: api/Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
+        public async Task<ActionResult<Product>> PostProduct(ProductDTO productDTO)
         {
+            var product=_mapper.Map<Product>(productDTO);
+
             await _productManager.Add(product);
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            //return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return Ok(await _productManager.GetAll());
         }
 
         // DELETE: api/Products/5
@@ -99,7 +108,7 @@ namespace SBMSBackend.Controllers
 
             await _productManager.Delete(product);
 
-            return NoContent();
+            return Ok(await _productManager.GetAll());
         }
 
         //private bool ProductExists(int id)

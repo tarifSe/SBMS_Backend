@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SBMS.BLL.Managers;
 using SBMS.BLL.Services;
 using SBMS.DatabaseContexts.DatabaseContext;
 using SBMS.Models.EntityModels;
@@ -74,7 +75,7 @@ namespace SBMSBackend.Controllers
                 //}
             }
 
-            return Ok("Updated");
+            return Ok(await _supplierManager.GetAll());
         }
 
         // POST: api/Suppliers
@@ -83,7 +84,7 @@ namespace SBMSBackend.Controllers
         public async Task<ActionResult<Supplier>> PostSupplier(Supplier supplier)
         {
             await _supplierManager.Add(supplier);
-            return CreatedAtAction("GetSupplier", new { id = supplier.Id }, supplier);
+            return Ok(await _supplierManager.GetAll());
         }
 
         // DELETE: api/Suppliers/5
@@ -98,7 +99,7 @@ namespace SBMSBackend.Controllers
 
             await _supplierManager.Delete(supplier);
 
-            return Ok("Deleted");
+            return Ok(await _supplierManager.GetAll());
         }
 
         //private bool SupplierExists(int id)
