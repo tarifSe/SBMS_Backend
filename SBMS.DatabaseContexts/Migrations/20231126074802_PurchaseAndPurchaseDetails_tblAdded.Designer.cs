@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SBMS.DatabaseContexts.DatabaseContext;
 
@@ -11,9 +12,11 @@ using SBMS.DatabaseContexts.DatabaseContext;
 namespace SBMS.DatabaseContexts.Migrations
 {
     [DbContext(typeof(SBMSDbContext))]
-    partial class SBMSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231126074802_PurchaseAndPurchaseDetails_tblAdded")]
+    partial class PurchaseAndPurchaseDetails_tblAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
