@@ -19,11 +19,13 @@ builder.Services.AddTransient<ISupplierRepository, SupplierRepository>();
 builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+builder.Services.AddTransient<IPurchaseRepository, PurchaseRepository>();
 
 builder.Services.AddTransient<ISupplierManager, SupplierManager>();
 builder.Services.AddTransient<ICategoryManager, CategoryManager>();
 builder.Services.AddTransient<IProductManager, ProductManager>();
 builder.Services.AddTransient<ICustomerManager, CustomerManager>();
+builder.Services.AddTransient<IPurchaseManager, PurchaseManager>();
 #endregion end
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

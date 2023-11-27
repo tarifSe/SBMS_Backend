@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SBMS.Models.EntityModels
 {
     public class Purchase
-    {
+    {   
         public int Id { get; set; }
         public double PurchaseAmount { get; set; }
         public DateTime PurchaseDate { get; set; }
