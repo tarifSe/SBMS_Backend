@@ -13,6 +13,8 @@ namespace SBMS.Models.EntityModels
         public DateTime PurchaseDate { get; set; }
         public DateTime PurchaseModificationDate { get; set; }
         public string Comments { get; set; }
+        public int SupplierId { get; set; }
+        public Supplier Supplier { get; set; }
         public IList<PurchaseDetails> PurchaseDetails { get; set; }
 
     }
