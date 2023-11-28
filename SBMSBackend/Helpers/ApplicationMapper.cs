@@ -9,6 +9,7 @@ namespace SBMSBackend.Helpers
         public ApplicationMapper()
         {
             CreateMap<Product,ProductDTO>().ReverseMap();
+            CreateMap<Purchase, PurchaseDTO>().ReverseMap();
             CreateMap<PurchaseDetails,PurchaseDetailsDTO>().ReverseMap();
         }
     }
