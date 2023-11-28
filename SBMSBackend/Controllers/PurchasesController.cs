@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SBMS.BLL.Services;
 using SBMS.DatabaseContexts.DatabaseContext;
 using SBMS.Models.EntityModels;
+using SBMSBackend.Models.DTOs;
 
 namespace SBMSBackend.Controllers
 {
@@ -16,10 +18,12 @@ namespace SBMSBackend.Controllers
     public class PurchasesController : ControllerBase
     {
         private readonly IPurchaseManager _purchaseManager;
+        private readonly IMapper _mapper;
 
-        public PurchasesController(IPurchaseManager purchaseManager)
+        public PurchasesController(IPurchaseManager purchaseManager, IMapper mapper)
         {
             _purchaseManager = purchaseManager;
+            _mapper = mapper;
         }
 
         // GET: api/Purchases
@@ -50,8 +54,9 @@ namespace SBMSBackend.Controllers
         // PUT: api/Purchases/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPurchase(int id, Purchase purchase)
+        public async Task<IActionResult> PutPurchase(int id, PurchaseDTO purchaseDTO)
         {
+            var purchase = _mapper.Map<Purchase>(purchaseDTO);
             if (id != purchase.Id)
             {
                 return BadRequest();
@@ -79,8 +84,9 @@ namespace SBMSBackend.Controllers
         // POST: api/Purchases
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Purchase>> PostPurchase(Purchase purchase)
+        public async Task<ActionResult<Purchase>> PostPurchase(PurchaseDTO purchaseDTO)
         {
+            var purchase=_mapper.Map<Purchase>(purchaseDTO);
             await _purchaseManager.Add(purchase);
             return CreatedAtAction("GetPurchase", new { id = purchase.Id }, purchase);
         }
