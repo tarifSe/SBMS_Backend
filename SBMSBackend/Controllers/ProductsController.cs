@@ -80,7 +80,7 @@ namespace SBMSBackend.Controllers
             }
 
             //return NoContent();
-            return Ok(await _productManager.GetAll());
+            return Ok();
         }
 
         // POST: api/Products
@@ -91,8 +91,8 @@ namespace SBMSBackend.Controllers
             var product=_mapper.Map<Product>(productDTO);
 
             await _productManager.Add(product);
-            //return CreatedAtAction("GetProduct", new { id = product.Id }, product);
-            return Ok(await _productManager.GetAll());
+            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            //return Ok(await _productManager.GetAll());
         }
 
         // DELETE: api/Products/5
@@ -108,7 +108,7 @@ namespace SBMSBackend.Controllers
 
             await _productManager.Delete(product);
 
-            return Ok(await _productManager.GetAll());
+            return Ok();
         }
 
         //private bool ProductExists(int id)
